@@ -1,15 +1,17 @@
 package com.project.simoneconigliaro.weatherapp.di;
 
-import com.project.simoneconigliaro.weatherapp.ui.ForecastListActivity;
+import com.project.simoneconigliaro.weatherapp.di.forecastlist.ForecastListViewModelsModule;
+import com.project.simoneconigliaro.weatherapp.ui.forecastlist.ForecastListActivity;
 
 import dagger.Module;
-import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 
 @Module
 public abstract class ActivityBuildersModule {
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(
+            modules = {ForecastListViewModelsModule.class}
+    )
     abstract ForecastListActivity contributeForecastListActivity();
 
 

@@ -1,12 +1,15 @@
-package com.project.simoneconigliaro.weatherapp.ui;
+package com.project.simoneconigliaro.weatherapp.ui.forecastlist;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.util.Log;
 
 import com.project.simoneconigliaro.weatherapp.R;
 import com.project.simoneconigliaro.weatherapp.di.DaggerAppComponent;
+import com.project.simoneconigliaro.weatherapp.viewmodels.ViewModelProviderFactory;
 
 import javax.inject.Inject;
 
@@ -16,14 +19,16 @@ public class ForecastListActivity extends DaggerAppCompatActivity {
 
     private static final String TAG = "ForecastListActivity";
 
+    private ForecastListViewModel viewModel;
+
     @Inject
-    String asdasd;
+    ViewModelProviderFactory providerFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d(TAG, "onCreate: " + asdasd);
+        viewModel = ViewModelProviders.of(this, providerFactory).get(ForecastListViewModel.class);
     }
 }
