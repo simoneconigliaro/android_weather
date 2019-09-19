@@ -18,4 +18,5 @@ public class WeatherResponse {
     public List<Day> getListDays() {
         return listDays;
     }
+
 }
