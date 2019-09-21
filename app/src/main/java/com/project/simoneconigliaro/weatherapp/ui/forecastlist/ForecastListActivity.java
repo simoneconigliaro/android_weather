@@ -8,12 +8,18 @@ import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.RequestManager;
 import com.project.simoneconigliaro.weatherapp.R;
 import com.project.simoneconigliaro.weatherapp.di.DaggerAppComponent;
+import com.project.simoneconigliaro.weatherapp.models.Day;
+import com.project.simoneconigliaro.weatherapp.models.Temperature;
+import com.project.simoneconigliaro.weatherapp.models.Weather;
 import com.project.simoneconigliaro.weatherapp.models.WeatherResponse;
+import com.project.simoneconigliaro.weatherapp.util.WeatherIcons;
 import com.project.simoneconigliaro.weatherapp.viewmodels.ViewModelProviderFactory;
 
 import javax.inject.Inject;
@@ -30,6 +36,9 @@ public class ForecastListActivity extends DaggerAppCompatActivity {
 
     @Inject
     ViewModelProviderFactory providerFactory;
+
+    @Inject
+    RequestManager requestManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +67,13 @@ public class ForecastListActivity extends DaggerAppCompatActivity {
                         case SUCCESS: {
                             showProgressBar(false);
                             Log.d(TAG, "onChanged: SUCCESS " + weatherResourceResponse.data.getCity().getName());
+
+                            Day day = weatherResourceResponse.data.getListDays().get(3);
+                            Weather weather = weatherResourceResponse.data.getListDays().get(3).getWeathers().get(0);
+                            String icon = weather.getIcon();
+                            Log.d(TAG, "onChanged: " + icon);
+                            requestManager.load(WeatherIcons.getIcon(icon))
+                                   .into((ImageView)findViewById(R.id.iv_test_icon));
 
                             break;
                         }
