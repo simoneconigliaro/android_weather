@@ -29,18 +29,4 @@ public class AppModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-
-    @Singleton
-    @Provides
-    static RequestOptions provideRequestOptions() {
-        return RequestOptions
-                .errorOf(R.drawable.ic_unknown_weather);
-    }
-
-    @Singleton
-    @Provides
-    static RequestManager provideGlideInstance(Application application, RequestOptions requestOptions){
-        return Glide.with(application)
-                .setDefaultRequestOptions(requestOptions);
-    }
 }

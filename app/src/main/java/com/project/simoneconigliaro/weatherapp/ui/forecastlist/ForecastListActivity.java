@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -38,18 +40,21 @@ public class ForecastListActivity extends DaggerAppCompatActivity {
     ViewModelProviderFactory providerFactory;
 
     @Inject
-    RequestManager requestManager;
+    ForecastAdapter forecastAdapter;
+
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         progressBar = findViewById(R.id.progress_bar);
+        recyclerView = findViewById(R.id.recycler_view);
 
         viewModel = ViewModelProviders.of(this, providerFactory).get(ForecastListViewModel.class);
 
+        initRecyclerView();
         subscribeObservers();
-
         viewModel.getWeather();
     }
 
@@ -70,10 +75,8 @@ public class ForecastListActivity extends DaggerAppCompatActivity {
 
                             Day day = weatherResourceResponse.data.getListDays().get(3);
                             Weather weather = weatherResourceResponse.data.getListDays().get(3).getWeathers().get(0);
-                            String icon = weather.getIcon();
-                            Log.d(TAG, "onChanged: " + icon);
-                            requestManager.load(WeatherIcons.getIcon(icon))
-                                   .into((ImageView)findViewById(R.id.iv_test_icon));
+
+                            forecastAdapter.setForecast(weatherResourceResponse.data.getListDays());
 
                             break;
                         }
@@ -89,6 +92,11 @@ public class ForecastListActivity extends DaggerAppCompatActivity {
         });
 
 
+    }
+
+    private void initRecyclerView(){
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(forecastAdapter);
     }
 
     private void showProgressBar(boolean isVisible) {

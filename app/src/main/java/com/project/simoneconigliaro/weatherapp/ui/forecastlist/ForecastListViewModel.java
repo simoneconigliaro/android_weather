@@ -35,7 +35,7 @@ public class ForecastListViewModel extends ViewModel {
     public void getWeather() {
         weather.setValue(WeatherResource.loading((WeatherResponse)null));
         final LiveData<WeatherResource<WeatherResponse>> source =  LiveDataReactiveStreams.fromPublisher(
-                weatherApi.getWeather("london", "6", "994a22ffdd7639fa94b55ec8a12f7106")
+                weatherApi.getWeather("london", "10", "994a22ffdd7639fa94b55ec8a12f7106")
                         .onErrorReturn(new Function<Throwable, WeatherResponse>() {
                             @Override
                             public WeatherResponse apply(Throwable throwable) throws Exception {
