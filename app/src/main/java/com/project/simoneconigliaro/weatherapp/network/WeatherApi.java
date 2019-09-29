@@ -13,6 +13,7 @@ public interface WeatherApi {
     @GET("forecast/daily")
     Flowable<WeatherResponse> getWeather(@Query("q") String location,
                                          @Query("cnt") String countDays,
+                                         @Query("units") String unitsType,
                                          @Query("appid") String appId
     );
 

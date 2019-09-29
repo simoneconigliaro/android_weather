@@ -3,6 +3,7 @@
     package="com.project.simoneconigliaro.weatherapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -12,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.detail.DetailActivity"></activity>
         <activity android:name=".ui.forecastlist.ForecastListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.project.simoneconigliaro.weatherapp.models.Day;
 import com.project.simoneconigliaro.weatherapp.models.Temperature;
 import com.project.simoneconigliaro.weatherapp.models.Weather;
 import com.project.simoneconigliaro.weatherapp.models.WeatherResponse;
+import com.project.simoneconigliaro.weatherapp.ui.detail.DetailActivity;
 import com.project.simoneconigliaro.weatherapp.util.WeatherIcons;
 import com.project.simoneconigliaro.weatherapp.viewmodels.ViewModelProviderFactory;
 
@@ -28,9 +30,10 @@ import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
-public class ForecastListActivity extends DaggerAppCompatActivity {
+public class ForecastListActivity extends DaggerAppCompatActivity implements ForecastAdapter.OnClickHandler {
 
     private static final String TAG = "ForecastListActivity";
+    public static final String POSITION_KEY = "position_key";
 
     private ForecastListViewModel viewModel;
 
@@ -72,10 +75,6 @@ public class ForecastListActivity extends DaggerAppCompatActivity {
                         case SUCCESS: {
                             showProgressBar(false);
                             Log.d(TAG, "onChanged: SUCCESS " + weatherResourceResponse.data.getCity().getName());
-
-                            Day day = weatherResourceResponse.data.getListDays().get(3);
-                            Weather weather = weatherResourceResponse.data.getListDays().get(3).getWeathers().get(0);
-
                             forecastAdapter.setForecast(weatherResourceResponse.data.getListDays());
 
                             break;
@@ -86,12 +85,9 @@ public class ForecastListActivity extends DaggerAppCompatActivity {
                             break;
                         }
                     }
-
                 }
             }
         });
-
-
     }
 
     private void initRecyclerView(){
@@ -108,4 +104,10 @@ public class ForecastListActivity extends DaggerAppCompatActivity {
     }
 
 
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(POSITION_KEY, position);
+        startActivity(intent);
+    }
 }

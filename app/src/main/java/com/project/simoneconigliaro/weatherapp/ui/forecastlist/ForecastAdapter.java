@@ -1,6 +1,7 @@
 package com.project.simoneconigliaro.weatherapp.ui.forecastlist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,31 +9,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.project.simoneconigliaro.weatherapp.R;
 import com.project.simoneconigliaro.weatherapp.models.Day;
+import com.project.simoneconigliaro.weatherapp.ui.detail.DetailActivity;
 import com.project.simoneconigliaro.weatherapp.util.DateUtils;
 import com.project.simoneconigliaro.weatherapp.util.WeatherIcons;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder> {
 
     private List<Day> forecast = new ArrayList<>();
+    OnClickHandler onClickHandler;
+
+    @Inject
+    public ForecastAdapter(OnClickHandler onClickHandler) {
+        this.onClickHandler = onClickHandler;
+    }
 
     @NonNull
     @Override
@@ -44,21 +46,26 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     @Override
     public void onBindViewHolder(@NonNull ForecastViewHolder holder, int position) {
 
-        String icon = forecast.get(position).getWeathers().get(0).getIcon();
         Long day = forecast.get(position).getDate();
         String description = forecast.get(position).getWeathers().get(0).getDescription();
-        Double temperature = forecast.get(position).getTemperatures().getTempDay();
-        Double tempMin = forecast.get(position).getTemperatures().getTempMin();
-        Double tempMax = forecast.get(position).getTemperatures().getTempMax();
+        int temperature = (int)forecast.get(position).getTemperatures().getTempDay();
+        int tempMin = (int)forecast.get(position).getTemperatures().getTempMin();
+        int tempMax = (int)forecast.get(position).getTemperatures().getTempMax();
+        String icon = forecast.get(position).getWeathers().get(0).getIcon();
+
+
+        String dayString = DateUtils.getDayOfTheWeek(day);
+        String tempString = temperature + "°C";
+        String tempMinMaxString = tempMin + "°C" + " - " + tempMax + "°C";
+
+        holder.dayTextView.setText(dayString);
+        holder.descriptionTextView.setText(description);
+        holder.temperatureTextView.setText(tempString);
+        holder.tempMinMaxTextView.setText(tempMinMaxString);
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.ic_unknown_weather);
         Glide.with(holder.weatherImageView.getContext()).load(WeatherIcons.getIcon(icon)).into(holder.weatherImageView);
-
-        holder.descriptionTextView.setText(description);
-        holder.dayTextView.setText(String.valueOf(day));
-        holder.temperatureTextView.setText(String.valueOf(temperature));
-        holder.tempMinMaxTextView.setText(String.valueOf(tempMin) + " - " + String.valueOf(tempMax));
     }
 
     @Override
@@ -66,7 +73,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         return forecast.size();
     }
 
-    public class ForecastViewHolder extends RecyclerView.ViewHolder {
+    public class ForecastViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView weatherImageView;
         private TextView dayTextView;
@@ -74,19 +81,29 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         private TextView temperatureTextView;
         private TextView tempMinMaxTextView;
 
-        public ForecastViewHolder(@NonNull View itemView) {
+        public ForecastViewHolder(@NonNull final View itemView) {
             super(itemView);
             weatherImageView = itemView.findViewById(R.id.iv_weather);
             dayTextView = itemView.findViewById(R.id.tv_day);
             descriptionTextView = itemView.findViewById(R.id.tv_description);
             temperatureTextView = itemView.findViewById(R.id.tv_temperature);
             tempMinMaxTextView = itemView.findViewById(R.id.tv_temp_min_max);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            onClickHandler.onItemClick(getAdapterPosition());
         }
     }
 
     public void setForecast(List<Day> forecast) {
         this.forecast = forecast;
         notifyDataSetChanged();
+    }
+
+    public interface OnClickHandler{
+        void onItemClick(int position);
     }
 
 
