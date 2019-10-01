@@ -18,6 +18,8 @@ public class SessionManager {
 
     MediatorLiveData<WeatherResource<WeatherResponse>> cachedWeather = new MediatorLiveData<>();
 
+    int weatherPosition;
+
     @Inject
     public SessionManager() {
     }
@@ -35,7 +37,17 @@ public class SessionManager {
           }
     }
 
+    public int getWeatherPosition() {
+        return weatherPosition;
+    }
+
+    public void setWeatherPosition(int weatherPosition) {
+        this.weatherPosition = weatherPosition;
+    }
+
     public LiveData<WeatherResource<WeatherResponse>> observeWeather(){
         return cachedWeather;
     }
+
+
 }

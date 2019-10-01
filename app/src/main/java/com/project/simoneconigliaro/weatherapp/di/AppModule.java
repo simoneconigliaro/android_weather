@@ -1,12 +1,5 @@
 package com.project.simoneconigliaro.weatherapp.di;
 
-import android.app.Application;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.request.RequestOptions;
-import com.project.simoneconigliaro.weatherapp.R;
-
 import javax.inject.Singleton;
 
 import dagger.Module;

@@ -1,22 +1,16 @@
 package com.project.simoneconigliaro.weatherapp.ui.forecastlist;
 
-import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.project.simoneconigliaro.weatherapp.R;
 import com.project.simoneconigliaro.weatherapp.models.Day;
-import com.project.simoneconigliaro.weatherapp.ui.detail.DetailActivity;
 import com.project.simoneconigliaro.weatherapp.util.DateUtils;
 import com.project.simoneconigliaro.weatherapp.util.WeatherIcons;
 
@@ -48,11 +42,10 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
         Long day = forecast.get(position).getDate();
         String description = forecast.get(position).getWeathers().get(0).getDescription();
-        int temperature = (int)forecast.get(position).getTemperatures().getTempDay();
-        int tempMin = (int)forecast.get(position).getTemperatures().getTempMin();
-        int tempMax = (int)forecast.get(position).getTemperatures().getTempMax();
+        int temperature = (int) forecast.get(position).getTemperatures().getTempDay();
+        int tempMin = (int) forecast.get(position).getTemperatures().getTempMin();
+        int tempMax = (int) forecast.get(position).getTemperatures().getTempMax();
         String icon = forecast.get(position).getWeathers().get(0).getIcon();
-
 
         String dayString = DateUtils.getDayOfTheWeek(day);
         String tempString = temperature + "°C";
@@ -62,10 +55,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         holder.descriptionTextView.setText(description);
         holder.temperatureTextView.setText(tempString);
         holder.tempMinMaxTextView.setText(tempMinMaxString);
-
-        RequestOptions requestOptions = new RequestOptions();
-        requestOptions.placeholder(R.drawable.ic_unknown_weather);
-        Glide.with(holder.weatherImageView.getContext()).load(WeatherIcons.getIcon(icon)).into(holder.weatherImageView);
+        holder.weatherImageView.setImageResource(WeatherIcons.getIcon(icon));
     }
 
     @Override
@@ -102,7 +92,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         notifyDataSetChanged();
     }
 
-    public interface OnClickHandler{
+    public interface OnClickHandler {
         void onItemClick(int position);
     }
 

@@ -1,10 +1,5 @@
 package com.project.simoneconigliaro.weatherapp.di.forecastlist;
 
-import android.app.Application;
-import android.view.View;
-
-import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.request.RequestOptions;
 import com.project.simoneconigliaro.weatherapp.network.WeatherApi;
 import com.project.simoneconigliaro.weatherapp.ui.forecastlist.ForecastAdapter;
 import com.project.simoneconigliaro.weatherapp.ui.forecastlist.ForecastListActivity;
@@ -30,4 +25,5 @@ public class ForecastListModule {
     static WeatherApi provideWeatherApi(Retrofit retrofit) {
         return retrofit.create(WeatherApi.class);
     }
+
 }

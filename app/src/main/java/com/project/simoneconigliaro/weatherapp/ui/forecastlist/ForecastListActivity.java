@@ -1,29 +1,20 @@
 package com.project.simoneconigliaro.weatherapp.ui.forecastlist;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.bumptech.glide.RequestManager;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.project.simoneconigliaro.weatherapp.R;
-import com.project.simoneconigliaro.weatherapp.di.DaggerAppComponent;
-import com.project.simoneconigliaro.weatherapp.models.Day;
-import com.project.simoneconigliaro.weatherapp.models.Temperature;
-import com.project.simoneconigliaro.weatherapp.models.Weather;
 import com.project.simoneconigliaro.weatherapp.models.WeatherResponse;
 import com.project.simoneconigliaro.weatherapp.ui.detail.DetailActivity;
-import com.project.simoneconigliaro.weatherapp.util.WeatherIcons;
 import com.project.simoneconigliaro.weatherapp.viewmodels.ViewModelProviderFactory;
 
 import javax.inject.Inject;
@@ -34,6 +25,7 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
 
     private static final String TAG = "ForecastListActivity";
     public static final String POSITION_KEY = "position_key";
+
 
     private ForecastListViewModel viewModel;
 
@@ -74,7 +66,6 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
                         }
                         case SUCCESS: {
                             showProgressBar(false);
-                            Log.d(TAG, "onChanged: SUCCESS " + weatherResourceResponse.data.getCity().getName());
                             forecastAdapter.setForecast(weatherResourceResponse.data.getListDays());
 
                             break;
@@ -90,7 +81,7 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
         });
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(forecastAdapter);
     }
@@ -106,8 +97,8 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
 
     @Override
     public void onItemClick(int position) {
+        viewModel.setWeatherPosition(position);
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(POSITION_KEY, position);
         startActivity(intent);
     }
 }
