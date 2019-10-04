@@ -97,7 +97,7 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
 
     @Override
     public void onItemClick(int position) {
-        viewModel.setWeatherPosition(position);
+        viewModel.setDayPosition(position);
         Intent intent = new Intent(this, DetailActivity.class);
         startActivity(intent);
     }

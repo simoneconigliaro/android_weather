@@ -9,9 +9,9 @@ public class Day {
     @SerializedName("weather")
     private List<Weather> weathers;
 
-    private double sunrise;
+    private long sunrise;
 
-    private double sunset;
+    private long sunset;
 
     @SerializedName("temp")
     private Temperature temperatures;
@@ -33,19 +33,19 @@ public class Day {
         this.weathers = weathers;
     }
 
-    public double getSunrise() {
+    public long getSunrise() {
         return sunrise;
     }
 
-    public void setSunrise(double sunrise) {
+    public void setSunrise(long sunrise) {
         this.sunrise = sunrise;
     }
 
-    public double getSunset() {
+    public long getSunset() {
         return sunset;
     }
 
-    public void setSunset(double sunset) {
+    public void setSunset(long sunset) {
         this.sunset = sunset;
     }
 

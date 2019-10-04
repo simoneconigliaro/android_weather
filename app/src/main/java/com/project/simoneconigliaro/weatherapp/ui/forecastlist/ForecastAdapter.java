@@ -7,10 +7,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.DialogTitle;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.simoneconigliaro.weatherapp.R;
 import com.project.simoneconigliaro.weatherapp.models.Day;
+import com.project.simoneconigliaro.weatherapp.util.Constants;
 import com.project.simoneconigliaro.weatherapp.util.DateUtils;
 import com.project.simoneconigliaro.weatherapp.util.WeatherIcons;
 
@@ -24,6 +26,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     private List<Day> forecast = new ArrayList<>();
     OnClickHandler onClickHandler;
+    private static final String TAG = "ForecastAdapter";
 
     @Inject
     public ForecastAdapter(OnClickHandler onClickHandler) {
@@ -47,15 +50,15 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         int tempMax = (int) forecast.get(position).getTemperatures().getTempMax();
         String icon = forecast.get(position).getWeathers().get(0).getIcon();
 
-        String dayString = DateUtils.getDayOfTheWeek(day);
+        String dayString = DateUtils.getDayOfTheWeek(day, true);
         String tempString = temperature + "°C";
-        String tempMinMaxString = tempMin + "°C" + " - " + tempMax + "°C";
+        String tempMinMaxString = tempMin + Constants.CELSIUS_SYMBOL + " - " + tempMax + Constants.CELSIUS_SYMBOL;
 
         holder.dayTextView.setText(dayString);
         holder.descriptionTextView.setText(description);
         holder.temperatureTextView.setText(tempString);
         holder.tempMinMaxTextView.setText(tempMinMaxString);
-        holder.weatherImageView.setImageResource(WeatherIcons.getIcon(icon));
+        holder.weatherIconImageView.setImageResource(WeatherIcons.getIcon(icon));
     }
 
     @Override
@@ -65,15 +68,12 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     public class ForecastViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView weatherImageView;
-        private TextView dayTextView;
-        private TextView descriptionTextView;
-        private TextView temperatureTextView;
-        private TextView tempMinMaxTextView;
+        private ImageView weatherIconImageView;
+        private TextView dayTextView, descriptionTextView, temperatureTextView, tempMinMaxTextView;
 
         public ForecastViewHolder(@NonNull final View itemView) {
             super(itemView);
-            weatherImageView = itemView.findViewById(R.id.iv_weather);
+            weatherIconImageView = itemView.findViewById(R.id.iv_weather_icon);
             dayTextView = itemView.findViewById(R.id.tv_day);
             descriptionTextView = itemView.findViewById(R.id.tv_description);
             temperatureTextView = itemView.findViewById(R.id.tv_temperature);

@@ -22,7 +22,7 @@ public class DetailViewModel extends ViewModel {
         return sessionManager.observeWeather();
     }
 
-    public int getPosition(){
-        return sessionManager.getWeatherPosition();
+    public int getDayPosition(){
+        return sessionManager.getDayPosition();
     }
 }

@@ -8,6 +8,7 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
+import com.project.simoneconigliaro.weatherapp.BuildConfig;
 import com.project.simoneconigliaro.weatherapp.SessionManager;
 import com.project.simoneconigliaro.weatherapp.models.WeatherResponse;
 import com.project.simoneconigliaro.weatherapp.network.WeatherApi;
@@ -20,6 +21,8 @@ import io.reactivex.schedulers.Schedulers;
 public class ForecastListViewModel extends ViewModel {
 
     private static final String TAG = "ForecastListViewModel";
+
+    public static final String API_KEY = BuildConfig.OPEN_WEATHER_API_KEY;
 
     private final WeatherApi weatherApi;
     private SessionManager sessionManager;
@@ -40,7 +43,7 @@ public class ForecastListViewModel extends ViewModel {
 
     private LiveData<WeatherResource<WeatherResponse>> getWeatherResponse(){
         return LiveDataReactiveStreams.fromPublisher(
-                weatherApi.getWeather("london", "10", "metric", "994a22ffdd7639fa94b55ec8a12f7106")
+                weatherApi.getWeather("london", "10", "metric", API_KEY)
                         .onErrorReturn(new Function<Throwable, WeatherResponse>() {
                             @Override
                             public WeatherResponse apply(Throwable throwable) throws Exception {
@@ -69,8 +72,8 @@ public class ForecastListViewModel extends ViewModel {
         return sessionManager.observeWeather();
     }
 
-    public void setWeatherPosition(int position){
-        sessionManager.setWeatherPosition(position);
+    public void setDayPosition(int dayPosition){
+        sessionManager.setDayPosition(dayPosition);
     }
 
 }
