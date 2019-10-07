@@ -3,10 +3,14 @@ package com.project.simoneconigliaro.weatherapp.ui.forecastlist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +28,6 @@ import dagger.android.support.DaggerAppCompatActivity;
 public class ForecastListActivity extends DaggerAppCompatActivity implements ForecastAdapter.OnClickHandler {
 
     private static final String TAG = "ForecastListActivity";
-    public static final String POSITION_KEY = "position_key";
 
 
     private ForecastListViewModel viewModel;
@@ -39,18 +42,22 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
 
     RecyclerView recyclerView;
 
+    SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         progressBar = findViewById(R.id.progress_bar);
         recyclerView = findViewById(R.id.recycler_view);
+        searchView = findViewById(R.id.search_view);
 
         viewModel = ViewModelProviders.of(this, providerFactory).get(ForecastListViewModel.class);
 
         initRecyclerView();
         subscribeObservers();
-        viewModel.getWeather();
+        initSearchView();
     }
 
     private void subscribeObservers() {
@@ -67,7 +74,6 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
                         case SUCCESS: {
                             showProgressBar(false);
                             forecastAdapter.setForecast(weatherResourceResponse.data.getListDays());
-
                             break;
                         }
                         case ERROR: {
@@ -94,11 +100,48 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
         }
     }
 
+    private void initSearchView() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String location) {
+                Log.d(TAG, "onQueryTextSubmit: FUNZIONAAAAAA");
+                viewModel.getWeather(location);
+                searchView.clearFocus();
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+    }
+
 
     @Override
     public void onItemClick(int position) {
         viewModel.setDayPosition(position);
         Intent intent = new Intent(this, DetailActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.forecast_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.settings:
+                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

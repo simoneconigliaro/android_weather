@@ -34,16 +34,14 @@ public class ForecastListViewModel extends ViewModel {
         Log.d(TAG, "ForecastListViewModel: viewmodel is working...");
     }
 
-    public void getWeather() {
-        if(observeWeather().getValue() == null) {
-            Log.d(TAG, "getWeather: weather is null");
-            sessionManager.getWeather(getWeatherResponse());
-        }
+    public void getWeather(String location) {
+        Log.d(TAG, "getWeather: is a new search");
+            sessionManager.getWeather(getWeatherResponse(location));
     }
 
-    private LiveData<WeatherResource<WeatherResponse>> getWeatherResponse(){
+    private LiveData<WeatherResource<WeatherResponse>> getWeatherResponse(String location){
         return LiveDataReactiveStreams.fromPublisher(
-                weatherApi.getWeather("london", "10", "metric", API_KEY)
+                weatherApi.getWeather(location, "10", "metric", API_KEY)
                         .onErrorReturn(new Function<Throwable, WeatherResponse>() {
                             @Override
                             public WeatherResponse apply(Throwable throwable) throws Exception {
