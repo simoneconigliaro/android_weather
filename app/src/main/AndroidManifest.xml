@@ -3,6 +3,7 @@
     package="com.project.simoneconigliaro.weatherapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".BaseApplication"
@@ -14,7 +15,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.detail.DetailActivity"></activity>
-        <activity android:name=".ui.forecastlist.ForecastListActivity">
+        <activity android:name=".ui.forecastlist.ForecastListActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

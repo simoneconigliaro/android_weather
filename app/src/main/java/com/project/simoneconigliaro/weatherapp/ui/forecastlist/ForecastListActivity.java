@@ -2,7 +2,6 @@ package com.project.simoneconigliaro.weatherapp.ui.forecastlist;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.project.simoneconigliaro.weatherapp.CheckPermissionActivity;
 import com.project.simoneconigliaro.weatherapp.R;
 import com.project.simoneconigliaro.weatherapp.models.WeatherResponse;
 import com.project.simoneconigliaro.weatherapp.ui.detail.DetailActivity;
@@ -23,12 +23,9 @@ import com.project.simoneconigliaro.weatherapp.viewmodels.ViewModelProviderFacto
 
 import javax.inject.Inject;
 
-import dagger.android.support.DaggerAppCompatActivity;
-
-public class ForecastListActivity extends DaggerAppCompatActivity implements ForecastAdapter.OnClickHandler {
+public class ForecastListActivity extends CheckPermissionActivity implements ForecastAdapter.OnClickHandler {
 
     private static final String TAG = "ForecastListActivity";
-
 
     private ForecastListViewModel viewModel;
 
@@ -55,9 +52,12 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
 
         viewModel = ViewModelProviders.of(this, providerFactory).get(ForecastListViewModel.class);
 
-        initRecyclerView();
+
         subscribeObservers();
+        initRecyclerView();
         initSearchView();
+        getLastLocation();
+
     }
 
     private void subscribeObservers() {
@@ -87,6 +87,7 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
         });
     }
 
+
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(forecastAdapter);
@@ -104,8 +105,7 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String location) {
-                Log.d(TAG, "onQueryTextSubmit: FUNZIONAAAAAA");
-                viewModel.getWeather(location);
+                viewModel.getWeatherFromLocation(location);
                 searchView.clearFocus();
 
                 return false;
@@ -144,4 +144,5 @@ public class ForecastListActivity extends DaggerAppCompatActivity implements For
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -64,7 +64,6 @@ public class DetailActivity extends DaggerAppCompatActivity {
                             int dayPosition = viewModel.getDayPosition();
                             setValues(weatherResponseResource.data, dayPosition);
 
-
                             break;
                         }
                         case ERROR: {
