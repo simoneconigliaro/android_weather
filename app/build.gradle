@@ -68,4 +68,8 @@ dependencies {
     def google_play_services_location_version = "17.0.0"
     implementation "com.google.android.gms:play-services-location:$google_play_services_location_version"
 
+    // Preference
+    def preference_version = "1.1.0"
+    implementation "androidx.preference:preference:$preference_version"
+
 }

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_main_relative_layout">
+
+    <TextView
+        android:id="@+id/tv_today_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        tools:text="London" />
+
+    <TextView
+        android:id="@+id/tv_today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_today_location"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="Wed, 02 October" />
+
+
+    <ImageView
+        android:id="@+id/iv_today_weather_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@id/tv_today"
+        tools:background="@drawable/ic_clear_sky_sun" />
+
+    <TextView
+        android:id="@+id/tv_today_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_today_weather_icon"
+        android:layout_alignStart="@id/iv_today_weather_icon"
+        android:layout_alignEnd="@id/iv_today_weather_icon"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="Clear sky" />
+
+    <TextView
+        android:id="@+id/tv_today_temperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_today"
+        android:layout_toEndOf="@id/iv_today_weather_icon"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        tools:text="19°C" />
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:id="@+id/layout_today_temperatures"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_today_temperature"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_arrow_drop_down"
+            android:scaleType="center" />
+
+        <TextView
+            android:id="@+id/tv_today_temp_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:text="10°C" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_arrow_drop_up"
+            android:scaleType="center" />
+
+        <TextView
+            android:id="@+id/tv_today_temp_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:text="20°C" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

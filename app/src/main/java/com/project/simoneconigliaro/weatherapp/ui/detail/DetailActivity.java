@@ -14,6 +14,7 @@ import com.project.simoneconigliaro.weatherapp.models.WeatherResponse;
 import com.project.simoneconigliaro.weatherapp.ui.forecastlist.WeatherResource;
 import com.project.simoneconigliaro.weatherapp.util.Constants;
 import com.project.simoneconigliaro.weatherapp.util.DateUtils;
+import com.project.simoneconigliaro.weatherapp.util.TemperatureUtils;
 import com.project.simoneconigliaro.weatherapp.util.WeatherIcons;
 import com.project.simoneconigliaro.weatherapp.viewmodels.ViewModelProviderFactory;
 
@@ -87,22 +88,26 @@ public class DetailActivity extends DaggerAppCompatActivity {
         String description = weatherResponse.getListDays().get(dayPosition).getWeathers().get(0).getDescription();
         String sunrise = DateUtils.getHour(weatherResponse.getListDays().get(dayPosition).getSunrise());
         String sunset = DateUtils.getHour(weatherResponse.getListDays().get(dayPosition).getSunset());
-        String temperature = ((int) weatherResponse.getListDays().get(dayPosition).getTemperatures().getTempDay()) + Constants.CELSIUS_SYMBOL;
-        String tempMin = ((int) weatherResponse.getListDays().get(dayPosition).getTemperatures().getTempMin()) + Constants.CELSIUS_SYMBOL;
-        String tempMax = ((int) weatherResponse.getListDays().get(dayPosition).getTemperatures().getTempMax()) + Constants.CELSIUS_SYMBOL;
+        int temperature = ((int) weatherResponse.getListDays().get(dayPosition).getTemperatures().getTempDay());
+        int tempMin = ((int) weatherResponse.getListDays().get(dayPosition).getTemperatures().getTempMin());
+        int tempMax = ((int) weatherResponse.getListDays().get(dayPosition).getTemperatures().getTempMax());
         String humidity = weatherResponse.getListDays().get(dayPosition).getHumidity() + Constants.HUMIDIY_SYMBOL;
         String pressure = weatherResponse.getListDays().get(dayPosition).getPressure() + Constants.PRESSURE_UNIT;
         String wind = weatherResponse.getListDays().get(dayPosition).getSpeed() + Constants.WIND_SPEED_UNIT;
         String icon = weatherResponse.getListDays().get(dayPosition).getWeathers().get(0).getIcon();
+
+        String temperatureString = TemperatureUtils.formatTemperature(this, temperature);
+        String tempMinString = TemperatureUtils.formatTemperature(this, tempMin);
+        String tempMaxString = TemperatureUtils.formatTemperature(this, tempMax);
 
         locationTextView.setText(location);
         dayTextView.setText(day);
         descriptionTextView.setText(description);
         sunriseTextView.setText(sunrise);
         sunsetTextView.setText(sunset);
-        temperatureTextView.setText(temperature);
-        tempMinTextView.setText(tempMin);
-        tempMaxTextView.setText(tempMax);
+        temperatureTextView.setText(temperatureString);
+        tempMinTextView.setText(tempMinString);
+        tempMaxTextView.setText(tempMaxString);
         humidityTextView.setText(humidity);
         pressureTextView.setText(pressure);
         windTextView.setText(wind);

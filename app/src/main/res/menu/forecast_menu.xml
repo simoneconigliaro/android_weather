@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/settings"
-        android:title="@string/settings" />
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_more_vert"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/current_location"
+                android:title="@string/current_location"
+                android:icon="@drawable/ic_location_on"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/settings"
+                android:title="@string/settings"
+                android:icon="@drawable/ic_settings"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+
 
 </menu>

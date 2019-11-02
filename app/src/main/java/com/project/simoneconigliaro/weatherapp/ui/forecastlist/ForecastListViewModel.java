@@ -24,6 +24,11 @@ public class ForecastListViewModel extends ViewModel {
 
     private final WeatherApi weatherApi;
     private SessionManager sessionManager;
+    private String location;
+
+    public static final String CELSIUS_UNITS = "metric";
+
+
 
     @Inject
     public ForecastListViewModel(WeatherApi weatherApi, SessionManager sessionManager) {
@@ -33,6 +38,7 @@ public class ForecastListViewModel extends ViewModel {
     }
 
     public void getWeatherFromLocation(String location) {
+        setLocation(location);
         sessionManager.getWeather(getWeatherResponseFromLocation(location));
     }
 
@@ -42,7 +48,7 @@ public class ForecastListViewModel extends ViewModel {
 
     private LiveData<WeatherResource<WeatherResponse>> getWeatherResponseFromLocation(String location) {
         return LiveDataReactiveStreams.fromPublisher(
-                weatherApi.getWeatherFromLocation(location, "10", "metric", API_KEY)
+                weatherApi.getWeatherFromLocation(location, "10", CELSIUS_UNITS, API_KEY)
                         .onErrorReturn(new Function<Throwable, WeatherResponse>() {
                             @Override
                             public WeatherResponse apply(Throwable throwable) throws Exception {
@@ -69,7 +75,7 @@ public class ForecastListViewModel extends ViewModel {
 
     private LiveData<WeatherResource<WeatherResponse>> getWeatherResponseFromLatLon(String lat, String lon) {
         return LiveDataReactiveStreams.fromPublisher(
-                weatherApi.getWeatherFromLatLon(lat, lon, "10", "metric", API_KEY)
+                weatherApi.getWeatherFromLatLon(lat, lon, "10", CELSIUS_UNITS, API_KEY)
                         .onErrorReturn(new Function<Throwable, WeatherResponse>() {
                             @Override
                             public WeatherResponse apply(Throwable throwable) throws Exception {
@@ -100,6 +106,14 @@ public class ForecastListViewModel extends ViewModel {
 
     public void setDayPosition(int dayPosition) {
         sessionManager.setDayPosition(dayPosition);
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
 }

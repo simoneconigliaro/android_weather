@@ -8,6 +8,7 @@ import com.project.simoneconigliaro.weatherapp.di.forecastlist.ForecastListViewM
 import com.project.simoneconigliaro.weatherapp.ui.detail.DetailActivity;
 import com.project.simoneconigliaro.weatherapp.ui.detail.DetailViewModel;
 import com.project.simoneconigliaro.weatherapp.ui.forecastlist.ForecastListActivity;
+import com.project.simoneconigliaro.weatherapp.ui.settings.SettingsActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -25,6 +26,9 @@ public abstract class ActivityBuildersModule {
     @ContributesAndroidInjector(
             modules = {DetailViewModelsModule.class})
     abstract DetailActivity contributeDetailActivity();
+
+    @ContributesAndroidInjector
+    abstract SettingsActivity contributeSettingsActivity();
 
 
 }

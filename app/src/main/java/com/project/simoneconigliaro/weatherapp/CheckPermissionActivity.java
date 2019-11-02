@@ -39,6 +39,9 @@ public class CheckPermissionActivity extends DaggerAppCompatActivity {
     @Inject
     ViewModelProviderFactory providerFactory;
 
+    @Inject
+    String prefTempUnit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
