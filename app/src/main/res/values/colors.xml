@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#0288D1</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimaryDark">#757575</color>
+    <color name="colorAccent">#03A9F4</color>
+    <color name="weather_list_item_line_color">#4DFFFFFF</color>
 </resources>

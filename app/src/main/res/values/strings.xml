@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WeatherApp</string>
+    <string name="app_name">Weather</string>
     <string name="humidity">Humidity</string>
     <string name="pressure">Pressure</string>
     <string name="wind">Wind</string>
@@ -16,6 +16,14 @@
     <string name="pref_temp_units_key" translatable="false">temperature</string>
     <string name="pref_temp_units_metric_value" translatable="false">metric</string>
     <string name="pref_temp_units_imperial_value" translatable="false">imperial</string>
+    <string name="dash_symbol">-</string>
+    <string name="slash_symbol">/</string>
+    <string name="icon_sunrise">icon sunrise</string>
+    <string name="icon_weather">icon weather</string>
+    <string name="icon_humidity">icon humidity</string>
+    <string name="icon_pressure">icon pressure</string>
+    <string name="icon_wind">icon wind</string>
+    <string name="units">Units</string>
 
 
 </resources>

@@ -2,6 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ListPreference
+        android:icon="@drawable/ic_temperature"
         android:defaultValue="@string/pref_temp_units_metric_value"
         android:entries="@array/pref_units_option_label"
         android:entryValues="@array/pref_units_option_value"

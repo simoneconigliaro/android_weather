@@ -13,6 +13,7 @@ import com.project.simoneconigliaro.weatherapp.models.WeatherResponse;
 import com.project.simoneconigliaro.weatherapp.util.Constants;
 import com.project.simoneconigliaro.weatherapp.util.DateUtils;
 import com.project.simoneconigliaro.weatherapp.util.TemperatureUtils;
+import com.project.simoneconigliaro.weatherapp.util.WeatherColors;
 import com.project.simoneconigliaro.weatherapp.util.WeatherIcons;
 
 import javax.inject.Inject;
@@ -84,10 +85,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 break;
             case FUTURE_DAY_VIEW_TYPE:
                 ((ForecastViewHolder) holder).dayTextView.setText(dayString);
-                ((ForecastViewHolder) holder).descriptionTextView.setText(description);
                 ((ForecastViewHolder) holder).temperatureTextView.setText(temperatureString);
-                ((ForecastViewHolder) holder).tempMinTextView.setText(tempMinString);
-                ((ForecastViewHolder) holder).tempMaxTextView.setText(tempMaxString);
                 ((ForecastViewHolder) holder).weatherIconImageView.setImageResource(WeatherIcons.getIcon(icon));
                 break;
             default:

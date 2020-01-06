@@ -12,7 +12,7 @@ import com.project.simoneconigliaro.weatherapp.R;
 public class ForecastViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public ImageView weatherIconImageView;
-    public TextView dayTextView, descriptionTextView, temperatureTextView, tempMinTextView, tempMaxTextView;
+    public TextView dayTextView, temperatureTextView;
     ForecastAdapter.OnClickHandler onClickHandler;
 
     public ForecastViewHolder(@NonNull final View itemView, ForecastAdapter.OnClickHandler onClickHandler) {
@@ -20,10 +20,7 @@ public class ForecastViewHolder extends RecyclerView.ViewHolder implements View.
         this.onClickHandler = onClickHandler;
         weatherIconImageView = itemView.findViewById(R.id.iv_weather_icon);
         dayTextView = itemView.findViewById(R.id.tv_day);
-        descriptionTextView = itemView.findViewById(R.id.tv_description);
         temperatureTextView = itemView.findViewById(R.id.tv_temperature);
-        tempMinTextView = itemView.findViewById(R.id.tv_temp_min);
-        tempMaxTextView = itemView.findViewById(R.id.tv_temp_max);
         itemView.setOnClickListener(this);
     }
 

@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_right_label">4dp</dimen>
-    <dimen name="padding_main_relative_layout">16dp</dimen>
+    <dimen name="today_relative_layout_padding">16dp</dimen>
+    <dimen name="container_sunrise_sunset_margin_bottom">16dp</dimen>
+    <dimen name="ic_sunrise_margin_end">8dp</dimen>
+    <dimen name="text_view_margin_top">4dp</dimen>
+    <dimen name="text_view_margin_bottom">4dp</dimen>
+    <dimen name="slash_symbol_margin_start">16dp</dimen>
+    <dimen name="slash_symbol_margin_end">16dp</dimen>
+    <dimen name="container_humidity_margin_top">32dp</dimen>
+    <dimen name="container_pressure_margin_top">16dp</dimen>
+    <dimen name="container_wind_margin_top">16dp</dimen>
+    <dimen name="conteiner_min_max_temp_margin_top">4dp</dimen>
+    <dimen name="line_margin_start">8dp</dimen>
+    <dimen name="line_margin_end">8dp</dimen>
+    <dimen name="container_item_margin_bottom">2dp</dimen>
+    <dimen name="setting_linear_layout_padding">16dp</dimen>
+    <dimen name="setting_line_margin_bottom">4dp</dimen>
+    <dimen name="setting_line_margin_top">4dp</dimen>
+    <dimen name="today_relative_layout_margin_bottom">16dp</dimen>
+    <dimen name="today_text_view_margin_bottom">16dp</dimen>
+    <dimen name="today_temperature_text_size">80sp</dimen>
+    <dimen name="icon_weather_width">200dp</dimen>
+    <dimen name="icon_weather_height">200dp</dimen>
+    <dimen name="temperature_text_view_height">130dp</dimen>
+    <dimen name="detail_linear_layout_padding">16dp</dimen>
+    <dimen name="weather_icon_small_width">60dp</dimen>
+    <dimen name="weather_icon_small_height">60dp</dimen>
+    <dimen name="hum_press_wind_icon_width">31dp</dimen>
+    <dimen name="hum_press_wind_icon_height">25dp</dimen>
+    <dimen name="dash_symbol_margin_start">8dp</dimen>
+    <dimen name="dash_symbol_margin_end">8dp</dimen>
 </resources>

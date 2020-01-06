@@ -3,6 +3,7 @@ package com.project.simoneconigliaro.weatherapp.ui.detail;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,8 @@ import com.project.simoneconigliaro.weatherapp.ui.forecastlist.WeatherResource;
 import com.project.simoneconigliaro.weatherapp.util.Constants;
 import com.project.simoneconigliaro.weatherapp.util.DateUtils;
 import com.project.simoneconigliaro.weatherapp.util.TemperatureUtils;
+import com.project.simoneconigliaro.weatherapp.util.WeatherBackground;
+import com.project.simoneconigliaro.weatherapp.util.WeatherColors;
 import com.project.simoneconigliaro.weatherapp.util.WeatherIcons;
 import com.project.simoneconigliaro.weatherapp.viewmodels.ViewModelProviderFactory;
 
@@ -37,6 +40,8 @@ public class DetailActivity extends DaggerAppCompatActivity {
             humidityTextView, pressureTextView, windTextView;
 
     private ImageView weatherIconImageView;
+
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +100,8 @@ public class DetailActivity extends DaggerAppCompatActivity {
         String pressure = weatherResponse.getListDays().get(dayPosition).getPressure() + Constants.PRESSURE_UNIT;
         String wind = weatherResponse.getListDays().get(dayPosition).getSpeed() + Constants.WIND_SPEED_UNIT;
         String icon = weatherResponse.getListDays().get(dayPosition).getWeathers().get(0).getIcon();
+        int backgroundColor = WeatherColors.getColor(icon);
+        int gradientBackground = WeatherBackground.getGradientBackground(icon);
 
         String temperatureString = TemperatureUtils.formatTemperature(this, temperature);
         String tempMinString = TemperatureUtils.formatTemperature(this, tempMin);
@@ -112,6 +119,8 @@ public class DetailActivity extends DaggerAppCompatActivity {
         pressureTextView.setText(pressure);
         windTextView.setText(wind);
         weatherIconImageView.setImageResource(WeatherIcons.getIcon(icon));
+        linearLayout.setBackground(getDrawable(gradientBackground));
+        getWindow().setStatusBarColor(backgroundColor);
 
     }
 
@@ -128,6 +137,7 @@ public class DetailActivity extends DaggerAppCompatActivity {
         pressureTextView = findViewById(R.id.tv_detail_pressure);
         windTextView = findViewById(R.id.tv_detail_wind);
         weatherIconImageView = findViewById(R.id.iv_detail_weather_icon);
+        linearLayout = findViewById(R.id.linear_layout_detail);
     }
 
 }
