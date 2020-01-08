@@ -1,8 +1,9 @@
 # Android Weather App
 Weather app made using Dagger2, RxJava, MVVM, ViewModel, LiveData, Retrofit, Google Play Services Location, Shared Preferences.
 ## Description
-- The app shows you the forecast of your current location using Google Play Services Location fetching the data from <a href="https://openweathermap.org/api" target="_blank">Open Weather API</a>
-- It allows the user to search the forecast of any place in the world.
+- The app shows the user the forecast of your current location with the help of Google Play Services Location fetching the data from <a href="https://openweathermap.org/api" target="_blank">Open Weather API</a>
+- It also allows the user to search the forecast of any city in the world.
+- The gradient background of the app will change depending on the weather conditions.
 - Tapping on one of days on the list will open a detail screen with additional information such as humidity, pressure, wind, sunrise, sunset.
 - From the menu setting, the user is able to change temperature unit between Celsius and Fahrenheit.
 
