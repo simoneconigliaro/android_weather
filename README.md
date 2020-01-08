@@ -1,5 +1,5 @@
 # Android Weather App
-Inventory manager app made using Dagger, RxJava, MVVM, ViewModel, LiveData.
+Weather app made using Dagger2, RxJava, MVVM, ViewModel, LiveData, Retrofit, Google Play Services Location, Shared Preferences.
 ## Description
 - The app keeps track of your inventory. It allows you to add, edit a product and delete one or the whole list of products.
 - You can also sell a product or order more if need it.
