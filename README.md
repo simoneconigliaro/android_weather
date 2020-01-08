@@ -15,5 +15,4 @@ The app uses Open Weather API. You can get an API key signing up <a href="https:
 
 ## Credits
 Weather icons by <a href="https://adamwhitcroft.com/climacons/" target="_blank">Adam Whitcroft</a>.
-Font Modern Sans Light by <a href="https://www.dafont.com/modern-sans.font" target="_blank">Taruny Incorporated
-</a>.
+Font Modern Sans Light by <a href="https://www.dafont.com/modern-sans.font" target="_blank">Taruny Incorporated</a>.
