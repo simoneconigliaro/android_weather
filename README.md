@@ -14,3 +14,6 @@ Weather app made using Dagger2, RxJava, MVVM, ViewModel, LiveData, Retrofit, Goo
 The app uses Open Weather API. You can get an API key signing up <a href="https://home.openweathermap.org/users/sign_up" target="_blank">here</a> and set it here in gradle.properties.
 
 ## Credits
+Weather icons by <a href="https://adamwhitcroft.com/climacons/" target="_blank">Adam Whitcroft</a>.
+Font Modern Sans Light by <a href="https://www.dafont.com/modern-sans.font" target="_blank">Taruny Incorporated
+</a>.
