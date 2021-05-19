@@ -8,12 +8,12 @@ Weather app made using Dagger2, RxJava, MVVM, ViewModel, LiveData, Retrofit, Goo
 - From the setting menu, the user is able to change temperature unit between Celsius and Fahrenheit.
 
 ## Screenshots
-<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_1.png" width="275"/>&nbsp;
-<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_2.png" width="275"/>&nbsp;
-<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_3.png" width="275"/>
-<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_4.png" width="275"/>&nbsp;
-<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_5.png" width="275"/>&nbsp;
-<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_6.png" width="275"/>
+<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_1.png" width="270"/>&nbsp;
+<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_2.png" width="270"/>&nbsp;
+<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_3.png" width="270"/>
+<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_4.png" width="270"/>&nbsp;
+<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_5.png" width="270"/>&nbsp;
+<img src="https://github.com/simoneconigliaro/android_weather/blob/master/Screenshot_6.png" width="270"/>
 
 ## Getting Started
 The app uses Open Weather API. You can get an API key signing up <a href="https://home.openweathermap.org/users/sign_up" target="_blank">here</a> and set it in gradle.properties.
